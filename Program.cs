@@ -54,7 +54,7 @@ class Program
             writer.WriteLine(line);
             rowCount++;
           }
-          Console.WriteLine($"Processed ${rowCount} rows.");
+          Console.WriteLine($"Processed {rowCount} rows.");
         }
       }
     }
