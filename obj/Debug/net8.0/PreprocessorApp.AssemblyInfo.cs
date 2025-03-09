@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PreprocessorApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d4cdee351c7292a1e0d5e7d1ebb2418788dac2d")]
 [assembly: System.Reflection.AssemblyProductAttribute("PreprocessorApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PreprocessorApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
