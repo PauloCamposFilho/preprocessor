@@ -7,10 +7,9 @@ namespace PreprocessorApp.Models.Classes;
 
 public class JSONProcessor() : IProcessor
 {
-  private StringBuilder _sb = new StringBuilder();
   private int processedRows = 0;
 
-  public void Process(string inputFile)
+  public void Process(string inputFile, string outputFile)
   {
     try
     {
@@ -24,14 +23,18 @@ public class JSONProcessor() : IProcessor
 
       var headers = ((JObject)JSONArray[0]).Properties().Select(p => p.Name).ToArray();
 
-      foreach (var item in JSONArray)
+      using (var writer = new StreamWriter(outputFile))
       {
-        var values = headers.Select(p => item[p]?.ToString() ?? string.Empty);
-        _sb.AppendLine(string.Join("|", values));
-        processedRows++;
+        foreach (var item in JSONArray)
+        {
+          var values = headers.Select(p => item[p]?.ToString() ?? string.Empty);
+          writer.WriteLine(string.Join("|", values));
+          processedRows++;
+        }
       }
+      Console.WriteLine($"Processed {processedRows} rows.");
     }
-    catch(JsonException ex)
+    catch (JsonException ex)
     {
       Console.WriteLine($"JSON Error: {ex.Message}");
     }
@@ -39,14 +42,5 @@ public class JSONProcessor() : IProcessor
     {
       Console.WriteLine($"Error: {ex.Message}");
     }
-  }
-
-  public void Save(string outputFile)
-  {
-    using (var writer = new StreamWriter(outputFile))
-    {
-      writer.Write(_sb);
-    }
-    Console.WriteLine($"Processed {processedRows} rows.");
   }
 }

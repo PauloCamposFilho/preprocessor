@@ -6,10 +6,9 @@ namespace PreprocessorApp.Models.Classes;
 
 public class ExcelProcessor() : IProcessor
 {
-  private StringBuilder _sb = new StringBuilder();
   private int processedRows = 0;
 
-  public void Process(string inputFile)
+  public void Process(string inputFile, string outputFile)
   {
     try
     {
@@ -30,27 +29,23 @@ public class ExcelProcessor() : IProcessor
           .ToArray();
 
         // Iterate through the rows to get the data
-        for (int row = 2; row <= rowCount; row++)
+        using (var writer = new StreamWriter(outputFile))
         {
-          var fields = Enumerable.Range(1, colCount)
-            .Select(col => worksheet.Cells[row, col].Text)
-            .ToArray();
-          _sb.AppendLine(string.Join("|", fields));
-          processedRows++;
+          for (int row = 2; row <= rowCount; row++)
+          {
+            var fields = Enumerable.Range(1, colCount)
+              .Select(col => worksheet.Cells[row, col].Text)
+              .ToArray();
+            writer.WriteLine(string.Join("|", fields));
+            processedRows++;
+          }
         }
+        Console.WriteLine($"Processed {processedRows} rows.");
       }
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
       Console.WriteLine($"Error processing Excel file: {ex.Message}");
     }
-  }
-  public void Save(string outputFile)
-  {
-    using (var writer = new StreamWriter(outputFile))
-    {
-      writer.Write(_sb);
-    }
-    Console.WriteLine($"Processed {processedRows} rows.");
   }
 }
