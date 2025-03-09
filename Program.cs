@@ -21,7 +21,6 @@ class Program
     {
       IProcessor processor = ProcessorFactory.GetProcessor(processorSelector);
       processor.Process(inputFile);
-      processor.Save(outputFile);
     }
     catch (Exception ex)
     {
