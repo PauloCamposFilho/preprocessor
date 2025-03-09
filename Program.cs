@@ -1,28 +1,27 @@
 ﻿using System.Globalization;
 using CsvHelper;
 using PreprocessorApp.Models.Classes;
+using PreprocessorApp.Models.Interfaces;
 
 class Program
 {
   static void Main(string[] args)
   {
     // invalid usage, error and abort
-    if (args.Length != 2)
+    if (args.Length != 3)
     {
-      Console.WriteLine("Usage: preprocessor filename.csv output.txt");
+      Console.WriteLine("Usage: preprocessor -X filename.csv output.txt");
+      Console.WriteLine("Accepted first parameters: -csv");
       return; // end program
     }
 
-    string inputFile = args[0];
-    string outputFile = args[1];
+    string processorSelector = args[0];
+    string inputFile = args[1];
+    string outputFile = args[2];
 
     try
     {
-      if (Path.GetExtension(inputFile).ToLower() != ".csv")
-      {
-        throw new Exception("Wrong File Type");
-      }
-      CSVProcessor processor = new CSVProcessor(inputFile, outputFile);
+      IProcessor processor = new ProcessFactory(processorSelector, inputFile, outputFile).InstantiateProcessor();
       processor.Process();
       processor.Save();
     }
