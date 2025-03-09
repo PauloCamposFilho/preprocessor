@@ -6,7 +6,7 @@ public class ProcessorFactory()
 {
   public static IProcessor GetProcessor(string processorSelector)
   {
-    switch(processorSelector)
+    switch(processorSelector.ToLower())
     {
       case "-csv":
       {
@@ -15,6 +15,10 @@ public class ProcessorFactory()
       case "-excel":
       {
         return new ExcelProcessor();
+      }
+      case "-json":
+      {
+        return new JSONProcessor();
       }
       default:
       {
