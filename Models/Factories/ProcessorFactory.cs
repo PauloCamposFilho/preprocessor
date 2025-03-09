@@ -16,7 +16,7 @@ public class ProcessFactory(string processorSelector, string inputFile, string o
       {
         return new CSVProcessor(_inputFile, _outputFile);
       }
-      case "excel":
+      default:
       {
         throw new NotImplementedException();
       }
