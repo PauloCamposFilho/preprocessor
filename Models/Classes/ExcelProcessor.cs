@@ -40,6 +40,7 @@ public class ExcelProcessor() : IProcessor
             processedRows++;
           }
         }
+        Console.WriteLine($"Processed {processedRows} rows.");
       }
     }
     catch (Exception ex)

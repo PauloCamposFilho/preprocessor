@@ -41,6 +41,7 @@ public class CSVProcessor() : IProcessor
           processedRows++;
         }
       }
+      Console.WriteLine($"Processed {processedRows} rows.");
     }
   }
 }
