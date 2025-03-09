@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using CsvHelper;
+using PreprocessorApp.Models.Classes;
 
 class Program
 {
@@ -21,6 +22,9 @@ class Program
       {
         throw new Exception("Wrong File Type");
       }
+      CSVProcessor processor = new CSVProcessor(inputFile, outputFile);
+      processor.Process();
+      processor.Save();
     }
     catch (Exception ex)
     {
