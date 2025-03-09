@@ -12,9 +12,9 @@ public class ProcessFactory(string processorSelector, string inputFile, string o
   {
     switch(_processorSelector)
     {
-      case "csv":
+      case "-csv":
       {
-        return new CSVProcessor(_inputFile, _outputFile);
+        return new CSVProcessor(_inputFile, _outputFile);        
       }
       default:
       {
