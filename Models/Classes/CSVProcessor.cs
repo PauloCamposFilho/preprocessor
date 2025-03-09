@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text;
 using CsvHelper;
 using PreprocessorApp.Models.Interfaces;
 
@@ -8,6 +9,8 @@ public class CSVProcessor(string inputFile, string outputFile = "output.txt") : 
 {
   private string _inputFile = inputFile;
   private string _outputFile = outputFile;
+  private StringBuilder _sb = new StringBuilder();
+  private int processedRows = 0;
   public void Process()
   {
     using (var reader = new StreamReader(_inputFile))
@@ -21,34 +24,32 @@ public class CSVProcessor(string inputFile, string outputFile = "output.txt") : 
       {
         expectedFieldCount = header.Length;
       }
-      using (var writer = new StreamWriter(_outputFile))
+      while (csv.Read())
       {
-        int rowCount = 0;
-        while (csv.Read())
+        if (csv.Parser.Count != expectedFieldCount)
         {
-          if (csv.Parser.Count != expectedFieldCount)
-          {
-            Console.WriteLine($"Skipping row {csv.Parser.Row}: expected {expectedFieldCount} fields, got {csv.Parser.Count}");
-            continue;
-          }
-          List<string?> fields = new List<string?>();
-          for (int i = 0; i < expectedFieldCount; i++)
-          {
-            string? field = csv.GetField(i);
-            fields.Add(field);
-          }
-
-          string line = string.Join("|", fields);
-          writer.WriteLine(line);
-          rowCount++;
+          Console.WriteLine($"Skipping row {csv.Parser.Row}: expected {expectedFieldCount} fields, got {csv.Parser.Count}");
+          continue;
         }
-        Console.WriteLine($"Processed ${rowCount} rows.");
+        List<string?> fields = new List<string?>();
+        for (int i = 0; i < expectedFieldCount; i++)
+        {
+          string? field = csv.GetField(i);
+          fields.Add(field);
+        }
+        string line = string.Join("|", fields);
+        _sb.AppendLine(line);
+        processedRows++;
       }
     }
   }
 
   public void Save()
   {
-    throw new NotImplementedException();
+    using (var writer = new StreamWriter(_outputFile))
+    {
+      writer.Write(_sb);
+    }
+    Console.WriteLine($"Processed {processedRows} rows.");
   }
 }
