@@ -36,6 +36,7 @@ public class ExcelProcessor() : IProcessor
             .Select(col => worksheet.Cells[row, col].Text)
             .ToArray();
           _sb.AppendLine(string.Join("|", fields));
+          processedRows++;
         }
       }
     }
