@@ -43,6 +43,10 @@ public class JSONProcessor() : IProcessor
 
   public void Save(string outputFile)
   {
-    throw new NotImplementedException();
+    using (var writer = new StreamWriter(outputFile))
+    {
+      writer.Write(_sb);
+    }
+    Console.WriteLine($"Processed {processedRows} rows.");
   }
 }
