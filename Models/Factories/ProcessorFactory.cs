@@ -2,25 +2,20 @@ using PreprocessorApp.Models.Interfaces;
 
 namespace PreprocessorApp.Models.Classes;
 
-public class ProcessFactory(string processorSelector, string inputFile, string outputFile = "output.txt")
+public class ProcessorFactory()
 {
-  private string _inputFile = inputFile;
-  private string _outputFile = outputFile;
-  private string _processorSelector = processorSelector;
-
-  public IProcessor InstantiateProcessor()
+  public static IProcessor GetProcessor(string processorSelector)
   {
-    switch(_processorSelector)
+    switch(processorSelector)
     {
       case "-csv":
       {
-        return new CSVProcessor(_inputFile, _outputFile);        
+        return new CSVProcessor();
       }
       default:
       {
         throw new NotImplementedException();
       }
     }
-    throw new KeyNotFoundException();
   }
 }

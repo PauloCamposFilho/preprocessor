@@ -2,7 +2,7 @@ namespace PreprocessorApp.Models.Interfaces
 {
     public interface IProcessor
     {
-      public void Process();
-      public void Save();
+      public void Process(string inputFile);
+      public void Save(string outputFile);
     }
 }
