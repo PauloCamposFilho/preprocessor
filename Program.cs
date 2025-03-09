@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using CsvHelper;
-using PreprocessorApp.Models.Classes;
+﻿using PreprocessorApp.Models.Classes;
 using PreprocessorApp.Models.Interfaces;
 
 class Program
@@ -21,9 +19,9 @@ class Program
 
     try
     {
-      IProcessor processor = new ProcessFactory(processorSelector, inputFile, outputFile).InstantiateProcessor();
-      processor.Process();
-      processor.Save();
+      IProcessor processor = ProcessorFactory.GetProcessor(processorSelector);
+      processor.Process(inputFile);
+      processor.Save(outputFile);
     }
     catch (Exception ex)
     {

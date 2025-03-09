@@ -5,15 +5,13 @@ using PreprocessorApp.Models.Interfaces;
 
 namespace PreprocessorApp.Models.Classes;
 
-public class CSVProcessor(string inputFile, string outputFile = "output.txt") : IProcessor
+public class CSVProcessor() : IProcessor
 {
-  private string _inputFile = inputFile;
-  private string _outputFile = outputFile;
   private StringBuilder _sb = new StringBuilder();
   private int processedRows = 0;
-  public void Process()
+  public void Process(string inputFile)
   {
-    using (var reader = new StreamReader(_inputFile))
+    using (var reader = new StreamReader(inputFile))
     using (var csv = new CsvReader(reader, CultureInfo.GetCultureInfo("en-US")))
     {
       csv.Read();
@@ -44,9 +42,9 @@ public class CSVProcessor(string inputFile, string outputFile = "output.txt") : 
     }
   }
 
-  public void Save()
+  public void Save(string outputFile = "output.txt")
   {
-    using (var writer = new StreamWriter(_outputFile))
+    using (var writer = new StreamWriter(outputFile))
     {
       writer.Write(_sb);
     }
