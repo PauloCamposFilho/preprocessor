@@ -12,6 +12,10 @@ public class ProcessorFactory()
       {
         return new CSVProcessor();
       }
+      case "-excel":
+      {
+        return new ExcelProcessor();
+      }
       default:
       {
         throw new NotImplementedException();
