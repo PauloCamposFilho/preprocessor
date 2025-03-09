@@ -20,7 +20,7 @@ class Program
     try
     {
       IProcessor processor = ProcessorFactory.GetProcessor(processorSelector);
-      processor.Process(inputFile);
+      processor.Process(inputFile, outputFile);
     }
     catch (Exception ex)
     {
