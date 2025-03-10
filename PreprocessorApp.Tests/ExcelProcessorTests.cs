@@ -40,6 +40,9 @@ public class ExcelProcessorTests
 
         // Assert
         Assert.Contains("is not a valid", exception.Message.ToLower());
+
+        // Cleanup
+        File.Delete(tempOutputPath);
     }
 
     [Fact]
@@ -55,5 +58,8 @@ public class ExcelProcessorTests
 
         // Assert
         Assert.Contains("excel file empty", exception.Message.ToLower());
+
+        // Cleanup
+        File.Delete(tempOutputPath);
     }
 }
