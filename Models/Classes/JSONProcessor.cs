@@ -1,4 +1,6 @@
-using System.Text;
+using System;
+using System.IO;
+using System.Linq;
 using System.Text.Json;
 using Newtonsoft.Json.Linq;
 using PreprocessorApp.Models.Interfaces;
@@ -37,10 +39,12 @@ public class JSONProcessor() : IProcessor
     catch (JsonException ex)
     {
       Console.WriteLine($"JSON Error: {ex.Message}");
+      throw;
     }
     catch (Exception ex)
     {
       Console.WriteLine($"Error: {ex.Message}");
+      throw;
     }
   }
 }
