@@ -5,6 +5,8 @@ namespace PreprocessorApp.Tests;
 
 public class ExcelProcessorTests
 {
+    ExcelProcessor processor = new ExcelProcessor();
+
     [Fact]
     public void Process_ValidExcel_ReturnsFlatFileContent()
     {
@@ -12,7 +14,6 @@ public class ExcelProcessorTests
         string inputPath = Path.Combine("tests", "excelInput.xlsx");
         string expectedOutputPath = Path.Combine("tests", "outputs", "outputExcel.txt");
         string tempOutputPath = Path.GetTempFileName();
-        var processor = new ExcelProcessor();
 
         // Act
         processor.Process(inputPath, tempOutputPath);

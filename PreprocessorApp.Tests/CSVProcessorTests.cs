@@ -5,6 +5,8 @@ namespace PreprocessorApp.Tests;
 
 public class CSVProcesorTests
 {
+    CSVProcessor processor = new CSVProcessor();
+
     [Fact]
     public void Process_ValidCSV_ReturnsFlatFileContent()
     {
@@ -12,7 +14,6 @@ public class CSVProcesorTests
         string inputPath = Path.Combine("tests", "input.csv");
         string expectedOutputPath = Path.Combine("tests", "outputs", "outputCSV.txt");
         string tempOutputPath = Path.GetTempFileName();
-        var processor = new CSVProcessor();
 
         // Act
         processor.Process(inputPath, tempOutputPath);

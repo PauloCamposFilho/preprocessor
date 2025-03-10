@@ -5,6 +5,8 @@ namespace PreprocessorApp.Tests;
 
 public class JSONProcessorTests
 {
+    JSONProcessor processor = new JSONProcessor();
+
     [Fact]
     public void Process_ValidJSON_ReturnsFlatFileContent()
     {
@@ -12,7 +14,7 @@ public class JSONProcessorTests
         string inputPath = Path.Combine("tests", "input.json");
         string expectedOutputPath = Path.Combine("tests", "outputs", "outputJSON.txt");
         string tempOutputPath = Path.GetTempFileName();
-        var processor = new JSONProcessor();
+        // var processor = new JSONProcessor();
 
         // Act
         processor.Process(inputPath, tempOutputPath);
