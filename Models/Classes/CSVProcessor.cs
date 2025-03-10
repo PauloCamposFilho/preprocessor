@@ -15,7 +15,7 @@ public class CSVProcessor() : IProcessor
     {
       csv.Read();
       csv.ReadHeader();
-      string[]? header = csv.HeaderRecord;
+      string[] header = csv.HeaderRecord;
       int expectedFieldCount = 0;
       if (header != null)
       {
@@ -30,10 +30,10 @@ public class CSVProcessor() : IProcessor
             Console.WriteLine($"Skipping row {csv.Parser.Row}: expected {expectedFieldCount} fields, got {csv.Parser.Count}");
             continue;
           }
-          List<string?> fields = new List<string?>();
+          List<string> fields = new List<string>();
           for (int i = 0; i < expectedFieldCount; i++)
           {
-            string? field = csv.GetField(i);
+            string field = csv.GetField(i);
             fields.Add(field);
           }
           string line = string.Join("|", fields);
