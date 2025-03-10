@@ -6,7 +6,7 @@ namespace PreprocessorApp.Tests;
 public class CSVProcesorTests
 {
     [Fact]
-    public void Process_ValidJSON_ReturnsFlatFileContent()
+    public void Process_ValidCSV_ReturnsFlatFileContent()
     {
         // Arrange
         string inputPath = Path.Combine("tests", "input.csv");

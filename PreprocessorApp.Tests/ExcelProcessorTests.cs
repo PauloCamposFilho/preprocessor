@@ -6,7 +6,7 @@ namespace PreprocessorApp.Tests;
 public class ExcelProcessorTests
 {
     [Fact]
-    public void Process_ValidJSON_ReturnsFlatFileContent()
+    public void Process_ValidExcel_ReturnsFlatFileContent()
     {
         // Arrange
         string inputPath = Path.Combine("tests", "excelInput.xlsx");
