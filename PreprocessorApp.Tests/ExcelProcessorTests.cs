@@ -1,6 +1,7 @@
 using Xunit;
 using System.IO;
 using PreprocessorApp.Models.Classes;
+using System;
 namespace PreprocessorApp.Tests;
 
 public class ExcelProcessorTests
@@ -25,5 +26,34 @@ public class ExcelProcessorTests
 
         // Cleanup
         File.Delete(tempOutputPath);
+    }
+
+    [Fact]
+    public void Process_InvalidExcelFile_ThrowsException()
+    {
+        // Arrange
+        string inputPath = Path.Combine("tests", "invalid.xlsx");
+        string tempOutputPath = Path.GetTempFileName();
+
+        // Act
+        var exception = Assert.Throws<InvalidDataException>(() => processor.Process(inputPath, tempOutputPath));
+
+        // Assert
+        Assert.Contains("is not a valid", exception.Message.ToLower());
+    }
+
+    [Fact]
+    public void Process_EmptyExcelFile_ThrowsException()
+    {
+        // Arrange
+        string inputPath = Path.Combine("tests", "empty.xlsx");
+        string expectedOutputPath = Path.Combine("tests", "output", "outputExcelEmpty.txt");
+        string tempOutputPath = Path.GetTempFileName();
+
+        // Act
+        var exception = Assert.Throws<Exception>(() => processor.Process(inputPath, tempOutputPath));
+
+        // Assert
+        Assert.Contains("excel file empty", exception.Message.ToLower());
     }
 }

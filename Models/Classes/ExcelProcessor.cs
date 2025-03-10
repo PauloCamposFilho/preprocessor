@@ -21,7 +21,13 @@ public class ExcelProcessor() : IProcessor
       {
         // Get the first worksheet
         var worksheet = package.Workbook.Worksheets[0];
+
         // Get number of rows / columns
+        if (worksheet.Dimension == null)
+        {
+          throw new Exception("Excel file empty.");
+        }
+
         int rowCount = worksheet.Dimension.Rows;
         int colCount = worksheet.Dimension.Columns;
 
@@ -48,6 +54,7 @@ public class ExcelProcessor() : IProcessor
     catch (Exception ex)
     {
       Console.WriteLine($"Error processing Excel file: {ex.Message}");
+      throw;
     }
   }
 }
