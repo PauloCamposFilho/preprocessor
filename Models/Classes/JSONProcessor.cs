@@ -39,10 +39,12 @@ public class JSONProcessor() : IProcessor
     catch (JsonException ex)
     {
       Console.WriteLine($"JSON Error: {ex.Message}");
+      throw;
     }
     catch (Exception ex)
     {
       Console.WriteLine($"Error: {ex.Message}");
+      throw;
     }
   }
 }
