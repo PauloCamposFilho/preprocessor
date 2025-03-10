@@ -9,10 +9,10 @@ public class JSONProcessorTests
     public void Process_ValidJSON_ReturnsFlatFileContent()
     {
         // Arrange
-        string inputPath = Path.Combine("tests", "excelInput.xlxs");
-        string expectedOutputPath = Path.Combine("tests", "outputs", "outputExcel.txt");
+        string inputPath = Path.Combine("tests", "input.json");
+        string expectedOutputPath = Path.Combine("tests", "outputs", "outputJSON.txt");
         string tempOutputPath = Path.GetTempFileName();
-        var processor = new ExcelProcessor();
+        var processor = new JSONProcessor();
 
         // Act
         processor.Process(inputPath, tempOutputPath);
