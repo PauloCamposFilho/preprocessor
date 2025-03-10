@@ -4,15 +4,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <!-- <ImplicitUsings>enable</ImplicitUsings> -->
     <!-- <Nullable>enable</Nullable> -->
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
+    <!-- <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" /> -->
     <PackageReference Include="EPPlus" Version="7.6.1"/>
     <PackageReference Include="CsvHelper" Version="33.0.1"/>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-    <!-- <Compile Remove="PreprocessorApp.Tests\**" /> -->
+    <Compile Remove="PreprocessorApp.Tests\**" />
   </ItemGroup>
 </Project>
